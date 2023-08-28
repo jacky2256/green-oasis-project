@@ -16,7 +16,7 @@ def roses_detail_parser(url_site: str, input_file: str, output_file: str = 'outp
     Returns:
     None
     """
-    output_url_file = f'output/{output_file}.json'
+    output_url_file = f'output/non_cleaning_data/{output_file}.json'
 
     with open(input_file, 'r') as file:
 

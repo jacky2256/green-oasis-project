@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 
-def roses_url_parser(url_site: str, output_file: str = 'output.txt') -> None:
+def roses_url_parser(count_pages: int, url_site: str, output_file: str = 'output.txt') -> None:
     """
     Function scrapes URLs of each rose from the website www.rose.com.
 
@@ -15,7 +15,7 @@ def roses_url_parser(url_site: str, output_file: str = 'output.txt') -> None:
 # h   ttps://kustyroz.ru/catalog/chaino-gibridnie-rozi/?PAGEN_1=
     rose_link_list = []
 
-    for page in range(1,15):
+    for page in range(1,count_pages):
         url = f'{url_site}{page}'
 
         response = requests.get(url)
