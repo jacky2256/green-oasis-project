@@ -1,78 +1,92 @@
 from bs4 import BeautifulSoup
 import requests
-import csv, json
+import json
 
 
-url_site = 'https://kustyroz.ru'
 
-with open('roses_url_list.txt', 'r') as file:
+def roses_detail_parser(url_site: str, input_file: str, output_file: str = 'output.json') -> None:
+    """
+    Function for parsing information about roses.
 
-    urls = [line.strip() for line in file.readlines()]
-    data_list = []
-    count = 0
+    Parameters:
+    url_site (str): The URL of the site page.
+    input_file (str): The link to a text file with links to each rose's page.
+    output_file (str, optional): The name of the output JSON file. Defaults to 'output.json'.
 
+    Returns:
+    None
+    """
+    output_url_file = f'output/{output_file}.json'
 
-    for url in urls:
+    with open(input_file, 'r') as file:
 
-        data_dict = {}
+        urls = [line.strip() for line in file.readlines()]
 
-        url = url_site + url
-        response = requests.get(url)
-        soup = BeautifulSoup(response.content, 'lxml')
-
-        # Title Scrapes
-        title = soup.find('div', class_='bx-header-section')
-        title = soup.find('h1').text
-        title = title.split('(')
-
-        if len(title) > 1 :
-            title_ru, title_en = title[:2]
-            title_en = title_en[:-1]
-        else :
-            title_en = ''
-            title_ru = title[0]
-
-        # Description
-        description_rose = soup.find_all('div', class_='bx_lb')
-        if len(description_rose) == 1 :
-            description_rose = ''
-        else :
-            description_rose = description_rose[0].find('div', class_='item_info_section')
-            description_rose = description_rose.find('div', class_='bx_item_description').text
-            # description_rose = description_rose.split('\n')
-            # description_rose = description_rose[2]
-            # description_rose = description_rose.replace('\xa0', '')
+        data_list = []
+        count = 0
 
 
-        # Detail
-        detail_rose = soup.find('div', class_='bx_item_container')
-        detail_rose = detail_rose.find('div', class_='bx_rt')
-        detail_rose = detail_rose.find('div', class_='item_info_section')
-        dl_element = soup.find('dl')
+        for url in urls:
 
-        dt_elements = dl_element.find_all('dt')
-        dd_elements = dl_element.find_all('dd')
+            data_dict = {}
 
-        for dt, dd in zip(dt_elements, dd_elements):
-            data_dict[dt.text] = dd.text
+            url = url_site + url
+            response = requests.get(url)
+            soup = BeautifulSoup(response.content, 'lxml')
 
-        data_dict['Название Русское'] = title_ru
-        data_dict['Название Английское'] = title_en
-        data_dict['Описание'] = description_rose
+            # Slug Scrapes
+            slug = url.split(sep='/')[-1]
+            slug = slug.split(sep='.')[0]
 
-        data_list.append(data_dict)
+            # Title Scrapes
+            title = soup.find('div', class_='bx-header-section')
+            title = soup.find('h1').text
+            title = title.split('(')
 
-        count += 1
-        print(f'#{count}: {url} is done!')
+            if len(title) > 1 :
+                title_ru, title_en = title[:2]
+                title_en = title_en[:-1]
+            else :
+                title_en = ''
+                title_ru = title[0]
 
-        # Write in the csv file
+            # Description
+            description_rose = soup.find_all('div', class_='bx_lb')
+            if len(description_rose) == 1 :
+                description_rose = ''
+            else :
+                description_rose = description_rose[0].find('div', class_='item_info_section')
+                description_rose = description_rose.find('div', class_='bx_item_description').text
 
-        json_filename = 'output.json'
+            # Detail
+            detail_rose = soup.find('div', class_='bx_item_container')
+            detail_rose = detail_rose.find('div', class_='bx_rt')
+            detail_rose = detail_rose.find('div', class_='item_info_section')
+            dl_element = soup.find('dl')
 
-        with open(json_filename, 'w', encoding='utf-8') as json_file:
-            json.dump(data_list, json_file, ensure_ascii=False, indent=4)
+            dt_elements = dl_element.find_all('dt')
+            dd_elements = dl_element.find_all('dd')
 
-        print(f'Data written to {json_filename}')
-        #
+            for dt, dd in zip(dt_elements, dd_elements):
+                data_dict[dt.text] = dd.text
 
-print('Site was scrapping !')
+            data_dict['Название Русское'] = title_ru
+            data_dict['Название Английское'] = title_en
+            data_dict['Описание'] = description_rose
+            data_dict['slug'] = slug
+            data_dict['category'] = output_file
+
+            data_list.append(data_dict)
+
+            count += 1
+            print(f'#{count}: {url} is done!')
+
+            # Write in the json file
+
+            with open(output_url_file, 'w', encoding='utf-8') as json_file:
+                json.dump(data_list, json_file, ensure_ascii=False, indent=4)
+
+            print(f'Data written to {output_url_file}')
+
+
+    print('Site was scrapping !')

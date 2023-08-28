@@ -1,2 +1,5 @@
-for i in range(1,10):
-    print(i)
+url = '/catalog/chaino-gibridnie-rozi/amneziya.html'
+url = url.split(sep='/')[-1]
+url = url.split(sep='.')[0]
+
+print(url)
