@@ -1,0 +1,667 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Cinzel:wght@700&family=Libre+Baskerville:ital@1&family=Titillium+Web:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Cinzel:wght@700&family=Cormorant:ital,wght@1,300&family=Libre+Baskerville:ital@1&family=Titillium+Web:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alice&display=swap');
+@import 'https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300';
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@700&display=swap');
+
+
+
+:root {
+    --color-green: rgb(23, 167, 68);
+    --color-white: rgb(254, 255, 254);
+    --color-black: rgb(33, 32, 32);
+    --color-grey: rgb(121, 108, 108);
+    --color-green-dark: #479f76;
+}
+
+.lead {
+    /* margin: 5px 0px 5px 0px; */
+    font-family: 'Alice', serif;
+    font-weight: 400px;
+
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(191, 243, 217);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* font-size: 30px; */
+}
+
+.wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper-card-home {
+
+    height: 100%;
+    /* Задаем высоту элемента, чтобы все карточки имели одинаковую высоту */
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.main {
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.header {
+    background-color: var(--color-green-dark);
+    padding: 10px 0;
+}
+
+a:link,
+a:visited {
+    text-decoration: none;
+    /* color: var(--color-white); */
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.account a {
+    margin: 0 20px;
+    color: var(--color-white);
+}
+
+.header-title {
+    /* font-family: 'Caveat', cursive; */
+    /* font-family: 'Cinzel', serif; */
+    font-family: 'Libre Baskerville', serif;
+    font-size: 42px;
+    */
+    /* font-family: 'Titillium Web', sans-serif; */
+}
+
+.cotegory-menu {
+    background-color: var(--color-green-dark);
+}
+
+.categories-item {
+    color: var(--color-black);
+    margin: 10px;
+    display: flex;
+}
+
+
+.banner .container-fluid {
+    margin: 20px 0;
+}
+
+.main {
+    margin: 20px 0;
+}
+
+.main-image {
+    min-width: 100px;
+    min-height: 100px;
+}
+
+.container-fluid {
+    border: 1px solid black;
+}
+
+
+.main .container-fluid .container .card {
+    margin-top: 20px;
+}
+
+
+.text-bg-dark {
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Add a background color with some transparency */
+}
+
+.card-img-overlay {
+    top: 0;
+    /* Position the overlay at the top of the card */
+    left: 0;
+    right: 0;
+    bottom: auto;
+    /* Keep it at the top */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    text-align: center;
+}
+
+.inspiring {
+    background-color: var(--color-green-dark);
+}
+
+.inspiring-quote {
+    font-style: italic;
+    color: var(--color-white);
+    /* Change the font color to white */
+    max-width: 100%;
+    /* Limit the width of the quote */
+}
+
+@media (max-width: 769px) {
+    .card-img-overlay {
+        position: static;
+        /* Remove absolute positioning */
+        padding: 20px;
+        /* Adjust padding for smaller screens */
+    }
+}
+
+
+.footer {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    padding: 40px 0;
+    /* margin-top: auto; */
+}
+
+.footer-title {
+    padding: 10px 0;
+}
+
+.footer-title p {
+    line-height: 1;
+}
+
+.footer-top .footer-top-col_1 a {
+    margin: 5px 0;
+}
+
+.footer-top .footer-top-col_1 a span {
+    color: var(--color-white);
+    margin: 0 5px;
+}
+
+.footer-top-col_2-header {
+    margin-bottom: 10px;
+    color: var(--color-grey);
+}
+
+.footer__hr {
+    margin: 40px 0;
+}
+
+/* List HTML */
+
+.list-title-item {
+    margin: 10px 0px 10px 0px;
+}
+
+.list-title-item h1 {
+    font-family: 'Alice', serif;
+}
+
+.list-title-item h2 {
+    font-family: 'Alice', serif;
+    font-weight: 400px;
+}
+
+.list-title-item h3 {
+    font-family: 'Cormorant', serif;
+    font-weight: 400px;
+}
+
+
+.list-item img {
+    height: 320px;
+    width: 320px;
+}
+
+.list-card {
+    max-width: 75%;
+    background-color: var(--color-green-dark);
+}
+
+.list-card-category {
+    max-width: 100%;
+    background-color: var(--color-green-dark);
+}
+
+/* Pagiantion  */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+}
+
+.pagination-link {
+    padding: 5px 10px;
+    margin: 0 3px;
+    border: 1px solid rgb(37, 120, 64);
+    cursor: pointer;
+    border-radius: 5px;
+    color: var(--color-black);
+}
+
+.pagination-dots {
+    margin: 0 5px;
+}
+
+.pagination-link:hover {
+    background-color: #f29d1d;
+    color: var(--color-black);
+}
+
+.current {
+    background-color: var(--color-green-dark);
+    /* border: 1px solid #ccc; */
+    border-radius: 5px;
+}
+
+
+/*
+========================
+      BUTTON ONE
+========================
+*/
+.btn {
+    text-align: center;
+    cursor: pointer;
+    background-color: rgb(244, 236, 236, 0.5);
+}
+
+.btn-one {
+    color: #235238;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.btn-one span {
+    transition: all 0.3s;
+}
+
+.btn-one::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-top-color: #235238;
+    border-bottom-color: #235238;
+    transform: scale(0.1, 1);
+}
+
+.btn-one:hover span {
+    letter-spacing: 2px;
+    color: #235238;
+}
+
+.btn-one:hover::before {
+    opacity: 1;
+    transform: scale(1, 1);
+}
+
+.btn-one::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition: all 0.3s;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-one:hover::after {
+    opacity: 0;
+    transform: scale(0.1, 1);
+}
+
+/*
+==========================================
+Card
+==========================================
+*/
+
+/* Стили для скрытой информации */
+.rose-info {
+    font-size: 1rem;
+    color: #555;
+    opacity: 0;
+    /* Скрыть информацию по умолчанию */
+    position: absolute;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+    z-index: 1;
+    /* Установить высокий z-index, чтобы информация была поверх других элементов */
+    transition: opacity 0.3s;
+    /* Добавить плавное появление */
+}
+
+/* Стили для отображения информации при наведении */
+.rose-image:hover+.card-body .rose-info {
+    opacity: 1;
+    /* Показать информацию при наведении на изображение */
+}
+
+
+
+/* Detail */
+/* Стили для detail-left и detail-right */
+.detail {
+    padding: 50px 0;
+}
+
+.detail-left-large-image img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.img-responsive {
+    max-width: 100%;
+    height: auto;
+}
+
+.detail-left-large-image {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    max-width: 75%;
+    height: auto;
+
+}
+
+
+.detail-left-small-image {
+    cursor: pointer;
+    max-width: 120px;
+    /* Добавьте немного отступа между изображениями */
+    margin-bottom: 10px;
+    /* Добавьте отступ снизу для переноса на новую строку */
+}
+
+
+/* ... предыдущие стили ... */
+
+
+.detail-info {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    color: #777;
+    line-height: 1.6;
+    font-family: 'Lato', sans-serif;
+}
+
+.detail-info h2 {
+    font-size: 28px;
+    margin-top: 0;
+    color: #333;
+    font-family: 'Playfair Display', serif;
+}
+
+.detail-info span {
+    font-weight: bold;
+    color: var(--color-grey);
+}
+
+
+/* Recomendet */
+.top-cards .card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: #fff;
+    margin: 10px;
+}
+
+.top-cards .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.top-cards .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.top-cards .card-text {
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: #000;
+}
+
+.carousel-control-prev {
+    left: -50px;
+}
+
+.carousel-control-next {
+    right: -50px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 16px;
+}
+
+/* Your custom styles */
+/* It's a good practice to keep your custom styles separate from Bootstrap styles */
+/* You can use your existing CSS for card styles */
+
+/* Update card columns based on device sizes */
+
+
+
+@media (max-width: 767px) {
+
+    .detail-right {
+        margin-top: 20px;
+    }
+
+    .detail-left-small-images {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container {
+        width: 75%;
+    }
+
+    .top-cards-col_mobile {
+        max-width: 75%;
+    }
+
+    .carousel-inner .carousel-item {
+        display: block;
+    }
+
+    .carousel-inner .carousel-item .col-md-4 {
+        display: none;
+    }
+
+    .carousel-inner .carousel-item.active .col-md-4:nth-child(1) {
+        display: block;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    .carousel-inner .carousel-item {
+        display: flex;
+    }
+
+    .carousel-inner .carousel-item .col-md-4 {
+        flex: 0 0 50%;
+        display: none;
+    }
+
+    .carousel-inner .carousel-item.active .col-md-4:nth-child(-n+2) {
+        display: block;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    .carousel-inner .carousel-item {
+        display: flex;
+    }
+
+    .carousel-inner .carousel-item .col-md-4 {
+        flex: 0 0 33.33%;
+        display: none;
+    }
+
+    .carousel-inner .carousel-item.active .col-md-4:nth-child(-n+3) {
+        display: block;
+    }
+}
+
+
+/* Login */
+
+.login-container {
+    background-color: rgba(39, 95, 68, 0.3);
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    flex: 1;
+    justify-content: center;
+    max-width: 500px;
+}
+
+.login-form h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: rgb(47, 46, 46);
+    text-align: center;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(244, 251, 247, 0.6);
+}
+
+.contacts-company-description h1 {
+    font-family: 'Alice', serif;
+}
+
+.contacts-company-description p {
+    font-family: 'Alice', serif;
+}
+
+main.contacts>.row {
+    margin-bottom: 20px;
+    /* Добавить отступ снизу между .row элементами */
+}
+
+.my-country-class {
+    /* padding: 0px 1px 0px 1px; */
+    margin: 0px 5px 0px 5px;
+    background-color: #479f76
+}
+
+.form-phone_contact select {
+    flex: 0 0 auto;
+    width: 25%;
+
+    margin: 0px 5px 0px 0px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(244, 251, 247, 0.6);
+}
+
+.form-phone_contact select option {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(244, 251, 247, 0.6);
+}
+
+.form-phone_contact input {
+    flex: 0 0 auto;
+    width: 75%;
+}
+
+.priem_zaiovok {
+    color: red;
+    font-size: 30px;
+}
+
+.priem_zaiovok button {
+    background-color: rgb(208, 12, 12);
+    color: white;
+    font-size: 30px;
+}
+
+.errors {
+    color: red
+}
+
+/* Добавим стили для красивых шрифтов */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
