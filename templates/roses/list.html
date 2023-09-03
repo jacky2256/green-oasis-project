@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load i18n %}
+
+<section class="py-5">
+    <div class="container">
+        <div class="row list-title">
+            <div class="col-12 text-center list-title-item">
+                <h1>{% trans "НАШ АССОРТИМЕНТ РОЗ" %}</h1>
+            </div>
+            <div class="col-12 text-center list-title-item">
+                {% if selected_category %}
+                <h2>{{ selected_category }}</h2>
+                {% else %}
+                <h2>{% trans "Все сорта роз" %}</h2>
+                {% endif %}
+            </div>
+            <div class="col-12 text-center list-title-item">
+                <h3>
+                   {% blocktrans %}
+                   Каждая из наших ИЗВЕСТНЫХ РОЗ мастерски изготовлена вручную и славится своим очаровательным,
+                   продолжительным цветением.
+                   {% endblocktrans %}
+                </h3>
+            </div>
+            <div class="text-success">
+                <hr>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="list">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for rose in roses %}
+            <div class="col d-flex align-items-start justify-content-center">
+                <div class="card list-card">
+
+                    {% with first_image=rose.roseimages_set.first %}
+                    {% if first_image %}
+                    <img src="{{ first_image.title.url }}" alt="{{ rose.title }} Image">
+                    {% else %}
+                    <p>No images available for this rose.</p>
+                    {% endif %}
+                    {% endwith %}
+
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <h5 class="card-title">{{ rose.title }}</h5>
+                        <h5 class="card-title">{% if rose.title_en %} {{ rose.title_en }}® {% else %} <br> {% endif %}
+                        </h5>
+                        <p class="card-text">{% trans "Цвет" %}: {% if rose.color %} {{ rose.color }} {% else %} - {% endif %}</p>
+                        {% comment %} <p class="card-text">Питовник: {% if rose.greenhouse %} {{ rose.greenhouse }} {%
+                            else %} - {% endif %}</p> {% endcomment %}
+                        {% comment %} <p class="card-text">Высота цветка: {% if rose.max_bush_height %} {{
+                            rose.max_bush_height }} {% else %} - {% endif %}</p> {% endcomment %}
+                        {% comment %} <p class="card-text">Размер цветка: {% if rose.max_size_number %} {{
+                            rose.max_size_number }} {% else %} - {% endif %}</p> {% endcomment %}
+                        <a href="{% url 'roses:detailrose' slug=rose.slug %}"
+                            class="d-flex justify-content-end justify-content-md-start">
+                            <div class="btn btn-one">
+                                <span>READ MORE</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+</section>
+
+
+
+
+
+<section class="pagination">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center align-items-center">
+                {% if page_obj.has_previous %}
+                <a class="pagination-link" href="?page={{ page_obj.previous_page_number }}">&lt;&lt;</a>
+                {% endif %}
+
+                {% if page_obj.number > 3 %}
+                <a class="pagination-link" href="?page=1">1</a>
+                {% if page_obj.number > 4 %}
+                <span class="pagination-dots">...</span>
+                {% endif %}
+                {% endif %}
+
+                {% for page in page_obj.paginator.page_range %}
+                    {% if page > page_obj.number|add:-2 and page < page_obj.number|add:2 %} <a
+                        class="pagination-link {% if page_obj.number == page %}current{% endif %}" href="?page={{ page }}">{{ page }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                    {% if page_obj.number < page_obj.paginator.num_pages|add:-3 %} {% if page_obj.number < page_obj.paginator.num_pages|add:-4 %} <span class="pagination-dots">...</span>
+                        {% endif %}
+                            <a class="pagination-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+                        {% endif %}
+
+                        {% if page_obj.has_next %}
+                        <a class="pagination-link" href="?page={{ page_obj.next_page_number }}">&gt;&gt;</a>
+                        {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+{% endblock content %}

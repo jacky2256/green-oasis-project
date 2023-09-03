@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load i18n static %}
+
+<section class="detail">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 detail-left d-flex flex-column align-items-center justify-content-between">
+                <div class="detail-left-large-image">
+                    <img id="largeImage" src="{{ rose_images.first.title.url }}" alt="Large Rose"
+                        class="img-responsive">
+                </div>
+                <div class="row justify-content-center align-items-center">
+                    {% for image in rose_images %}
+                    <img src="{{ image.title.url }}" alt="Small Rose" class="detail-left-small-image"
+                        onclick="changeImage(this)">
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-6 detail-info d-flex flex-column">
+                <h2>{{ rose.title }} ®</h2>
+
+                <div class="detail-info-feature row">
+                    <div class="col-12 col-sm-4 detail-info-right">
+                        <p class="detail-right-year"><span>{% trans "Год" %}:</span> 2023</p>
+                        <p class="detail-right-price"><span>{% trans "Цена" %}:</span> $29.99</p>
+                        <p class="detail-right-nursery"><span>{% trans "Питовник" %}:</span> {{ rose.greenhouse }}</p>
+                        <p class="detail-right-color"><span>{% trans "Цвет" %}:</span> {{ rose.color }}</p>
+                        <p class="detail-right-aroma"><span>{% trans "Аромат" %}:</span> {{ rose.aroma }}</p>
+                        <p class="detail-right-height"><span>{% trans "Высота куста" %}:</span> {{ rose.min_bush_height }} - {{ rose.max_bush_height }} {% trans "см" %}</p>
+                    </div>
+
+                    <div class="col-12 col-sm-8 detail-info-left">
+                        <p class="detail-right-flowers"><span>{% trans "Количество цветков на стебле" %}:</span> {{ rose.min_number_flawers }} - {{ rose.max_number_flawers }}</p>
+                        <p class="detail-right-size"><span>{% trans "Размер цветка" %}:</span> {{ rose.min_size_number }} - {{ rose.max_size_number }} {% trans "см" %}</p>
+                        <p class="detail-right-rain-resistance"><span>{% trans "Устойчивость к дождю" %}:</span> {{ rose.rain_resistance }}</p>
+                        <p class="detail-right-powdery-mildew-resistance"><span>{% trans "Устойчивость к мучнистой росе" %}:</span> {{ rose.powdery_mildew_resistance }}</p>
+                        <p class="detail-right-black-spot-resistance"><span>{% trans "Устойчивость к черной пятнистости" %}:</span> {{ rose.black_spot_resistance }}</p>
+                    </div>
+                </div>
+
+                <div class="detail-info-description">
+                    <p class="detail-right-description"><span>{% trans "Описание" %}:</span> {{ rose.description }}</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+{% comment %} <section class="top-cards">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <!-- Карточка 1 -->
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <img src="images/baner/creme-de-la-creme-garden-famous-roses-1000_540x.webp"
+                                            class="card-img-top" alt="Rose 1">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Rose 1</h5>
+                                            <p class="card-text">Description of Rose 1.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Карточка 2 -->
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <img src="images/baner/creme-de-la-creme-garden-famous-roses-1000_540x.webp"
+                                            class="card-img-top" alt="Rose 2">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Rose 2</h5>
+                                            <p class="card-text">Description of Rose 2.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Карточка 3 -->
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <img src="images/baner/creme-de-la-creme-garden-famous-roses-1000_540x.webp"
+                                            class="card-img-top" alt="Rose 3">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Rose 3</h5>
+                                            <p class="card-text">Description of Rose 3.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row">
+                                <!-- Карточка 4 -->
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <img src="images/baner/creme-de-la-creme-garden-famous-roses-1000_540x.webp"
+                                            class="card-img-top" alt="Rose 4">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Rose 4</h5>
+                                            <p class="card-text">Description of Rose 4.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Карточка 5 -->
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <img src="images/baner/creme-de-la-creme-garden-famous-roses-1000_540x.webp"
+                                            class="card-img-top" alt="Rose 5">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Rose 5</h5>
+                                            <p class="card-text">Description of Rose 5.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Карточка 6 -->
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <img src="images/baner/creme-de-la-creme-garden-famous-roses-1000_540x.webp"
+                                            class="card-img-top" alt="Rose 6">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Rose 6</h5>
+                                            <p class="card-text">Description of Rose 6.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+</section> {% endcomment %}
+
+<script>
+    function changeImage(element) {
+        var largeImage = document.getElementById("largeImage");
+        largeImage.src = element.src;
+    }
+ </script>
+{% endblock content %}

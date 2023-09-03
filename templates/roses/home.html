@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{% load i18n %}
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <p class="lead">
+                    {% blocktrans %}
+                    Волшебный уголок цветов: где розы расцветают во всей своей красе. Дарите радость близким с
+                    нашими нежными композициями, воплощающими красоту и элегантность. Встречайте магазин, где каждая
+                    роза – это символ страсти к жизни и вдохновения.
+                    {% endblocktrans %}
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 d-flex flex-column justify-content-center align-items-center priem_zaiovok">
+                <p>
+                    {% trans "ПРИЕМ ЗАЯВОК НА ОСЕНЬ 2023 ОТКРЫТ!" %}
+                </p>
+                <a href="{% url 'contacts:contacts' %}"><button type="button" class="btn btn-danger btn-lg">{% trans "Связаться с нами" %}</button></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% comment %}<section class="banner">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-xxl-8">
+                <!-- Bootstrap Carousel Component -->
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        {% for banner in banners %}
+                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.counter0 }}" {% if
+                            forloop.first %}class="active" {% endif %}></li>
+                        {% endfor %}
+                    </ol>
+                    <div class="carousel-inner">
+                        {% for banner in banners %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <img src="{{ banner.image.url }}" class="d-block w-100" alt="{{ banner.title}}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> {% endcomment %}
+
+
+
+
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-between">
+            {% for category in categories %}
+            <div class="col-sm-12 col-md-5 mb-3">
+                <div class="card list-card-category h-100">
+                    <img src="{{ category.image.url }}" class="card-img-top" alt="...">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <h5 class="card-title">{{ category.name }}</h5>
+                        <p class="card-text">{{ category.description }}</p>
+                        <a href="{% url 'roses:roses-category-list' category.slug %}">
+                            <button type="button" class="btn btn-one">Read Detail</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:2 or forloop.last %}
+        </div>
+        <div class="row justify-content-between">
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+{% if bottom_banner %}
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="card inspiring position-relative"> <!-- Added position-relative class -->
+                <img src="{{ bottom_banner.image.url }}" class="card-img" alt="{{ bottom_banner.title }}">
+                <div
+                    class="card-img-overlay mx-5 d-flex flex-column justify-content-center align-items-center text-white">
+                    <h3 class="card-title text-center">{{ bottom_banner.title }}</h3>
+                    <blockquote class="inspiring-quote">
+                        <p>{{ bottom_banner.description }}</p>
+                    </blockquote>
+                    <p class="card-text text-end"><small>02/07/2023</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <p class="lead">
+                    {% blocktrans %}
+                    Погрузитесь в чарующий мир роз. Откройте для себя калейдоскоп цветов и ароматов, которые
+                    рассказывают истории о романтике и красоте. Наша изысканная коллекция представляет шедевры природы:
+                    от элегантной классики до очаровательных современных сортов. Поднимите свои чувства и насладитесь
+                    очарованием этих вневременных цветов. Добро пожаловать в симфонию лепестков, где каждая роза
+                    рассказывает историю элегантности и изящества.
+                    {% endblocktrans %}
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock content %}
