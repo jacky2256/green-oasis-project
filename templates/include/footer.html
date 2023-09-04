@@ -94,35 +94,6 @@
         </div>
     </div>
 </footer>
-<script src="{% static 'js/script.js' %}"></script>
-
-
-<div class="">
-    <div class="">
-        <button class="" type="" data-bs-toggle="" aria-expanded="">
-            {% get_current_language as LANGUAGE_CODE %}
-            {% get_available_languages as LANGUAGES %}
-            {% get_language_info_list for LANGUAGES as languages %}
-            {% for language in languages %}
-            {% if language.code == LANGUAGE_CODE %}
-            {{ language.name_local }} ({{ language.code }})
-            {% endif %}
-            {% endfor %}
-        </button>
-        <ul class="">
-            {% get_available_languages as LANGUAGES %}
-            {% get_language_info_list for LANGUAGES as languages %}
-            {% for language in languages %}
-            <li>
-                <a class="{% if language.code == LANGUAGE_CODE %}{% endif %}" href="{% url 'set_language' %}"
-                    data-language-code="{{ language.code }}">
-                    {{ language.name_local }} ({{ language.code }})
-                </a>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-
     <script>
         document.querySelectorAll('.dropdown-item').forEach(function (item) {
             item.addEventListener('click', function (e) {
