@@ -19,6 +19,19 @@ class Category(models.Model):
 
 class RoseModel(models.Model):
     """Muvies"""
+
+    RAIN_RESISTENCE_CHOICES = (
+        ('high', 'высокая'),
+        ('moderate', 'умеренная'),
+        ('low', 'низкая'),
+    )
+
+    RAIN_RESISTENCE_CHOICES = (
+        ('high', 'высокая'),
+        ('moderate', 'умеренная'),
+        ('low', 'низкая'),
+    )
+
     title_my_en = models.CharField(
         max_length=150, verbose_name='Название английское')
     title = models.CharField(
@@ -40,11 +53,11 @@ class RoseModel(models.Model):
     min_size_number = models.SmallIntegerField(
         verbose_name='Минимальный размер цветка', blank=True, null=True)
     rain_resistance = models.CharField(
-        verbose_name='Устойчивость к дождю', max_length=50, blank=True, null=True)
+        verbose_name='Устойчивость к дождю', max_length=50, choices=RAIN_RESISTENCE_CHOICES, default='moderate')
     powdery_mildew_resistance = models.CharField(
-        verbose_name='Устойчивость к мучнистой росе', max_length=50, blank=True, null=True)
+        verbose_name='Устойчивость к мучнистой росе', max_length=50, choices=RAIN_RESISTENCE_CHOICES, default='moderate')
     black_spot_resistance = models.CharField(
-        verbose_name='Устойчивость к черной пятнистости', max_length=50, blank=True, null=True)
+        verbose_name='Устойчивость к черной пятнистости', max_length=50, choices=RAIN_RESISTENCE_CHOICES, default='moderate')
     description = models.TextField(
         verbose_name='Описание', blank=True, null=True)
     greenhouse = models.CharField(
@@ -70,15 +83,10 @@ class RoseModel(models.Model):
 
 
 class RoseImages(models.Model):
-    # title = models.CharField("Заголовок", max_length=100)
-    # description = models.TextField("Описание")
     title = models.ImageField("Изображение", upload_to="image_roses/")
     rose = models.ForeignKey(
         RoseModel, verbose_name="Роза", on_delete=models.CASCADE)
-
-    # def __str__(self):
-    #     return self.title
-
+    
     class Meta:
         verbose_name = "Фото розы"
         verbose_name_plural = "Фото роз"
