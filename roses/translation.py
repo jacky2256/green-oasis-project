@@ -12,12 +12,8 @@ class RoseModelTranslationOptions(TranslationOptions):
               'rain_resistance', 'powdery_mildew_resistance',
               'black_spot_resistance', 'description'
               )
-    # exclude = ('title', 'color', 'aroma', 
-    #           'rain_resistance', 'powdery_mildew_resistance',
-    #           'black_spot_resistance', 'description'
-    #           )
-
-
+    
+    
 @register(Banner)
 class BannerTranslationOptions(TranslationOptions):
     fields = ('title', 'description')

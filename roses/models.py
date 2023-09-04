@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
+from django.utils.translation import gettext_lazy as _
 
 class Category(models.Model):
     """Сорта роз"""
@@ -20,17 +21,10 @@ class Category(models.Model):
 class RoseModel(models.Model):
     """Muvies"""
 
-    RAIN_RESISTENCE_CHOICES = (
-        ('high', 'высокая'),
-        ('moderate', 'умеренная'),
-        ('low', 'низкая'),
-    )
-
-    RAIN_RESISTENCE_CHOICES = (
-        ('high', 'высокая'),
-        ('moderate', 'умеренная'),
-        ('low', 'низкая'),
-    )
+    class RainResistance(models.TextChoices):
+        HIGH = 'high', _('высокая')
+        MODERATE = 'moderate', _('умеренная')
+        LOW = 'low', _('низкая')
 
     title_my_en = models.CharField(
         max_length=150, verbose_name='Название английское')
@@ -53,11 +47,23 @@ class RoseModel(models.Model):
     min_size_number = models.SmallIntegerField(
         verbose_name='Минимальный размер цветка', blank=True, null=True)
     rain_resistance = models.CharField(
-        verbose_name='Устойчивость к дождю', max_length=50, choices=RAIN_RESISTENCE_CHOICES, default='moderate')
+        verbose_name=_('Устойчивость к дождю'),
+        max_length=50,
+        choices=RainResistance.choices,
+        default=RainResistance.MODERATE
+    )
     powdery_mildew_resistance = models.CharField(
-        verbose_name='Устойчивость к мучнистой росе', max_length=50, choices=RAIN_RESISTENCE_CHOICES, default='moderate')
+        verbose_name=_('Устойчивость к мучнистой росе'),
+        max_length=50,
+        choices=RainResistance.choices,
+        default=RainResistance.MODERATE
+    )
     black_spot_resistance = models.CharField(
-        verbose_name='Устойчивость к черной пятнистости', max_length=50, choices=RAIN_RESISTENCE_CHOICES, default='moderate')
+        verbose_name=_('Устойчивость к черной пятнистости'),
+        max_length=50,
+        choices=RainResistance.choices,
+        default=RainResistance.MODERATE
+    )
     description = models.TextField(
         verbose_name='Описание', blank=True, null=True)
     greenhouse = models.CharField(
