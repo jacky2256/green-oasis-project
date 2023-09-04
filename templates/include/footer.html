@@ -52,17 +52,6 @@
                 </div>
             </div>
             <div class="col-md-4 d-flex flex-column justify-content-between">
-                {% comment %} <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Русский
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" href="#">Английский</a></li>
-                        <li><a class="dropdown-item" href="#">Румынский</a></li>
-                        <li><a class="dropdown-item active" href="#">Русский</a></li>
-                    </ul>
-                </div> {% endcomment %}
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -70,31 +59,31 @@
                         {% get_available_languages as LANGUAGES %}
                         {% get_language_info_list for LANGUAGES as languages %}
                         {% for language in languages %}
-                            {% if language.code == LANGUAGE_CODE %}
-                                {{ language.name_local }} ({{ language.code }})
-                            {% endif %}
+                        {% if language.code == LANGUAGE_CODE %}
+                        {{ language.name_local }} ({{ language.code }})
+                        {% endif %}
                         {% endfor %}
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark">
                         {% get_available_languages as LANGUAGES %}
                         {% get_language_info_list for LANGUAGES as languages %}
                         {% for language in languages %}
-                            <li>
-                                <a class="dropdown-item{% if language.code == LANGUAGE_CODE %} active{% endif %}"
-                                    href="{% url 'set_language' %}" data-language-code="{{ language.code }}">
-                                    {{ language.name_local }} ({{ language.code }})
-                                </a>
-                            </li>
+                        <li>
+                            <a class="dropdown-item{% if language.code == LANGUAGE_CODE %} active{% endif %}"
+                                href="{% url 'set_language' %}" data-language-code="{{ language.code }}">
+                                {{ language.name_local }} ({{ language.code }})
+                            </a>
+                        </li>
                         {% endfor %}
                     </ul>
                 </div>
-                
+
                 <form id="language-switch-form" action="{% url 'set_language' %}" method="post" style="display: none;">
                     {% csrf_token %}
                     <input name="next" type="hidden" value="{{ redirect_to }}">
                     <input name="language" type="hidden" id="language-code-input">
                     <input type="submit" value="Go">
-                </form>             
+                </form>
                 <div class="copyright">
                     ©
                     <a class="footer__link copyright__link" href="https://rus-buket.ru">
@@ -106,4 +95,42 @@
     </div>
 </footer>
 <script src="{% static 'js/script.js' %}"></script>
-{% endblock footer %}
+
+
+<div class="">
+    <div class="">
+        <button class="" type="" data-bs-toggle="" aria-expanded="">
+            {% get_current_language as LANGUAGE_CODE %}
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+            {% for language in languages %}
+            {% if language.code == LANGUAGE_CODE %}
+            {{ language.name_local }} ({{ language.code }})
+            {% endif %}
+            {% endfor %}
+        </button>
+        <ul class="">
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+            {% for language in languages %}
+            <li>
+                <a class="{% if language.code == LANGUAGE_CODE %}{% endif %}" href="{% url 'set_language' %}"
+                    data-language-code="{{ language.code }}">
+                    {{ language.name_local }} ({{ language.code }})
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script>
+        document.querySelectorAll('.dropdown-item').forEach(function (item) {
+            item.addEventListener('click', function (e) {
+                e.preventDefault();
+                var languageCode = this.getAttribute('data-language-code');
+                document.getElementById('language-code-input').value = languageCode;
+                document.getElementById('language-switch-form').submit();
+            });
+        });
+    </script>
+    {% endblock footer %}
