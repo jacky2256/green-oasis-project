@@ -13,7 +13,7 @@ class Command(BaseCommand):
     help = 'Load data from CSV file'
 
     def handle(self, *args, **kwargs):
-        with open('roses/management/commands/roses.csv', 'r', encoding='utf-8') as csv_file:
+        with open('roses/management/commands/roses_model.csv', 'r', encoding='utf-8') as csv_file:
             csv_reader = csv.DictReader(csv_file)
             for row in csv_reader:
                 category_name = row['category']
