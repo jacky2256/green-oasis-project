@@ -21,7 +21,7 @@ class Command(BaseCommand):
                     name=category_name, defaults={'slug': category_name})
 
                 rose = RoseModel(
-                    title_en=row['title_en'],
+                    title_my_en=row['title_en'],
                     title=row['title_ru'],
                     color=row['color'],
                     aroma=row['aroma'],
