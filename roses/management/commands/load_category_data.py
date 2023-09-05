@@ -20,6 +20,10 @@ class Command(BaseCommand):
                     name=row['name'],
                     slug=row['slug'],
                     description=row['description']
+                    name_en=row['name_en'],
+                    description_en=row['description_en'],
+                     name_ru=row['name_ru'],
+                    description_ru=row['description_ru']
                 )
                 image_path = 'roses/management/commands/' + \
                     row['image']
