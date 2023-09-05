@@ -22,7 +22,7 @@ class Command(BaseCommand):
 
                 rose = RoseModel(
                     title_my_en=row['title_my_en'],
-                    title=row['title_ru'],
+                    title=row['title'],
                     color=row['color'],
                     aroma=row['aroma'],
                     max_bush_height=row['max_bush_height'],
