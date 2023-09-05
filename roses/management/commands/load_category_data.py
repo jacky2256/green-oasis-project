@@ -19,7 +19,7 @@ class Command(BaseCommand):
                 category = Category(
                     name=row['name'],
                     slug=row['slug'],
-                    description=row['description']
+                    description=row['description'],
                     name_en=row['name_en'],
                     description_en=row['description_en'],
                      name_ru=row['name_ru'],
