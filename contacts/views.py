@@ -7,12 +7,12 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 
 def send_notification_email(client_name, client_email, client_phone):
-    subject = 'Новый клиент хочет связаться'
+    subject = f'Клиент {client_name} хочет связаться'
     full_message = 'Имя: {}\nEmail: {}\nНомер телефона: {}\n\n'.format(client_name, client_email, client_phone)
     recipient_list = [settings.EMAIL_RECEIVER]  # Используйте настройку для адреса получателя
     
     # Создайте HTML-содержимое для письма, используя шаблон
-    html_message = render_to_string('contacts/notification.html', {
+    html_message = render_to_string('contacts/notification_email.html', {
         'client_name': client_name,
         'client_email': client_email,
         'client_phone': client_phone,
