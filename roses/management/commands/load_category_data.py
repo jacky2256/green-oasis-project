@@ -22,8 +22,8 @@ class Command(BaseCommand):
                     description=row['description'],
                     name_en=row['name_en'],
                     description_en=row['description_en'],
-                     name_ru=row['name_ru'],
-                    description_ru=row['description_ru']
+                     name_ru=row['name'],
+                    description_ru=row['description']
                 )
                 image_path = 'roses/management/commands/' + \
                     row['image']
