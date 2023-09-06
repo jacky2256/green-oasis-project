@@ -45,7 +45,7 @@ class Command(BaseCommand):
                     slug=category_name)
 
                 rose_images = RoseImages(
-                    image = row['image'],
+                    title = f"roses_images/{row['image']}",
                     rose = rose
                 )
                 # image_path = f"/home/jacky/Documents/GIT_Projects/green-oasis-2/green-oasis-project_scraping/output/{row['image']}"
