@@ -40,7 +40,7 @@ class Command(BaseCommand):
         with open('roses/management/commands/roses_images.csv', 'r', encoding='utf-8') as csv_file:
             csv_reader = csv.DictReader(csv_file)
             for row in csv_reader:
-                category_name = row['slug']
+                category_name = row['rose_id']
                 rose = RoseModel.objects.get(
                     slug=category_name)
 
