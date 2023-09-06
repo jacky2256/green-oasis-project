@@ -5,6 +5,7 @@ from django.core.management.base import BaseCommand
 from django.core.files import File
 import os
 import django
+from django.core.exceptions import ObjectDoesNotExist 
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings")
 django.setup()
@@ -40,17 +41,20 @@ class Command(BaseCommand):
         with open('roses/management/commands/roses_images.csv', 'r', encoding='utf-8') as csv_file:
             csv_reader = csv.DictReader(csv_file)
             for row in csv_reader:
-                category_name = row['rose_id']
-                rose = RoseModel.objects.get(
-                    slug=category_name)
-
-                rose_images = RoseImages(
-                    title = f"roses_images/{row['image']}",
-                    rose = rose
-                )
-                # image_path = f"/home/jacky/Documents/GIT_Projects/green-oasis-2/green-oasis-project_scraping/output/{row['image']}"
-                # with open(image_path, 'rb') as img_file:
-                #     rose_images.image.save(
-                #         row['image'], File(img_file), save=True)
-                rose_images.save()
+                try:
+                    category_name = row['rose_id']
+                    rose = RoseModel.objects.get(
+                        slug=category_name)
+    
+                    rose_images = RoseImages(
+                        title = f"roses_images/{row['image']}",
+                        rose = rose
+                    )
+                    # image_path = f"/home/jacky/Documents/GIT_Projects/green-oasis-2/green-oasis-project_scraping/output/{row['image']}"
+                    # with open(image_path, 'rb') as img_file:
+                    #     rose_images.image.save(
+                    #         row['image'], File(img_file), save=True)
+                    rose_images.save()
+                except ObjectDoesNotExist:
+                    print(f"Категория {category_name} изображение {row['image']}")
         self.stdout.write(self.style.SUCCESS('Data loaded successfully'))
