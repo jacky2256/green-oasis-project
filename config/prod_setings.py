@@ -1,2 +1,2 @@
 DEBUG = False
-ALLOWED_HOSTS = ['jacky2256.pythonanywhere.com']
+ALLOWED_HOSTS = ['www.green-oasis.md']
