@@ -25,6 +25,8 @@ class RosesListView(ListView):
     context_object_name = 'roses'  # Указываете имя переменной контекста для передачи данных в шаблон
     paginate_by = 15  # Указываете количество записей на одной странице
 
+    def get_queryset(self):
+        return RoseModel.objects.filter(in_stock=True)
 
 class RosesCategoryListView(ListView):
     model = RoseModel  # Указываете модель, из которой нужно выводить данные
@@ -37,7 +39,8 @@ class RosesCategoryListView(ListView):
         category_slug = self.kwargs.get('category')  # Получаем значение параметра из URL
 
         if category_slug:
-            queryset = queryset.filter(category__slug=category_slug)
+            # queryset = queryset.filter(category__slug=category_slug)
+            return RoseModel.objects.filter(Q(is_publish=True) & Q(category__slug='Ваша категория'))
 
         return queryset
     
