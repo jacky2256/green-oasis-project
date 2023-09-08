@@ -40,7 +40,7 @@ class RosesCategoryListView(ListView):
 
         if category_slug:
             # queryset = queryset.filter(category__slug=category_slug)
-            return RoseModel.objects.filter(Q(is_publish=True) & Q(category__slug='Ваша категория'))
+            return RoseModel.objects.filter(Q(is_publish=True) & Q(category__slug=category_slug))
 
         return queryset
     
