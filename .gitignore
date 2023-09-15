@@ -1,5 +1,5 @@
 /foto
-
+images_roses/
 # Python-related
 *.pyc
 __pycache__/
@@ -8,10 +8,10 @@ __pycache__/
 *.db
 *.sqlite3
 *.pyc
-
 /env
 *.env
 .vscode
+*.zip
 # Virtual environment
 venv/
 env/
