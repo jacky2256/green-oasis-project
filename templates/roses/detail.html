@@ -22,8 +22,7 @@
 
                 <div class="detail-info-feature row">
                     <div class="col-12 col-sm-4 detail-info-right">
-                        <p class="detail-right-year"><span>{% trans "Год" %}:</span> 2023</p>
-                        <p class="detail-right-price"><span>{% trans "Цена" %}:</span> $29.99</p>
+                        {% comment %} <p class="detail-right-price"><span>{% trans "Цена" %}:</span> $29.99</p> {% endcomment %}
                         <p class="detail-right-nursery"><span>{% trans "Питовник" %}:</span> {{ rose.greenhouse }}</p>
                         <p class="detail-right-color"><span>{% trans "Цвет" %}:</span> {{ rose.color }}</p>
                         <p class="detail-right-aroma"><span>{% trans "Аромат" %}:</span> {{ rose.aroma }}</p>
@@ -31,7 +30,17 @@
                     </div>
 
                     <div class="col-12 col-sm-8 detail-info-left">
-                        <p class="detail-right-flowers"><span>{% trans "Количество цветков на стебле" %}:</span> {{ rose.min_number_flawers }} - {{ rose.max_number_flawers }}</p>
+                        
+                        <p class="detail-right-flowers">
+                            <span>{% trans "Количество цветков на стебле" %}:
+                            </span> 
+                            {% if rose.min_number_flawers >= rose.max_number_flawers %}
+                                {{ rose.min_number_flawers }}
+                            {% else %}
+                                {{ rose.min_number_flawers }} - {{ rose.max_number_flawers }}
+                            {% endif %}
+                        </p>
+
                         <p class="detail-right-size"><span>{% trans "Размер цветка" %}:</span> {{ rose.min_size_number }} - {{ rose.max_size_number }} {% trans "см" %}</p>
                         <p class="detail-right-rain-resistance"><span>{% trans "Устойчивость к дождю" %}:</span> {{ rose.rain_resistance }}</p>
                         <p class="detail-right-powdery-mildew-resistance"><span>{% trans "Устойчивость к мучнистой росе" %}:</span> {{ rose.powdery_mildew_resistance }}</p>
